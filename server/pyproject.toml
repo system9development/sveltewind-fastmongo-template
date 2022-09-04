@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "server"
+version = "0.1.0"
+description = ""
+authors = ["Noah Dahlman <noah.dahlman@outlook.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+fastapi = {extras = ["all"], version = "^0.82.0"}
+pymongo = "^4.2.0"
+ujson = "^5.4.0"
+
+[tool.poetry.dev-dependencies]
+pytest = "python-dotenv"
+flake8 = "autopep8"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
