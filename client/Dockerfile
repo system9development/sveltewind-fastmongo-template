@@ -10,15 +10,17 @@ RUN npm install
 # create the build files
 RUN npm run build
 
-# stage two of build
-# copy build result and run.
-FROM nginx:1.18-alpine
+ENTRYPOINT [ "vite", "preview" ]
 
-# Enter nginx stage
-WORKDIR /usr/share/nginx/html
-# Clear out the directory
-RUN rm -rf ./* 
-# Copy over the build artifacts
-COPY --from=builder /app/build .
+# # stage two of build
+# # copy build result and run.
+# FROM nginx:1.18-alpine
 
-ENTRYPOINT [ "nginx", "-g", "daemon off;" ]
+# # Enter nginx stage
+# WORKDIR /usr/share/nginx/html
+# # Clear out the directory
+# RUN rm -rf ./* 
+# # Copy over the build artifacts
+# COPY --from=builder /app/build .
+
+# ENTRYPOINT [ "nginx", "-g", "daemon off;" ]
