@@ -10,7 +10,7 @@ RUN npm install
 # create the build files
 RUN npm run build
 
-ENTRYPOINT [ "vite", "preview" ]
+ENTRYPOINT [ "npm", "run", "preview" ]
 
 # # stage two of build
 # # copy build result and run.
