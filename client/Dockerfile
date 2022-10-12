@@ -12,10 +12,13 @@ RUN npm run build
 
 # stage two of build
 # copy build result and run.
-FROM node:18-slim
+FROM nginx:1.18-alpine
 
-WORKDIR /app
-COPY --from=builder /app .
-COPY . .
+# Enter nginx stage
+WORKDIR /usr/share/nginx/html
+# Clear out the directory
+RUN rm -rf ./* 
+# Copy over the build artifacts
+COPY --from=builder /app/build .
 
-CMD ["npm", "start"]
+ENTRYPOINT [ "nginx", "-g", "daemon off;" ]
