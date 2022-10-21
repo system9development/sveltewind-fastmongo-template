@@ -25,7 +25,7 @@ FROM python-base as builder-base
 RUN apt-get update && apt-get install --no-install-recommends -y curl build-essential
 
 # install poetry - respects $POETRY_VERSION & $POETRY_HOME
-RUN curl -sSL https://install.python-poetry.org/ | python
+RUN curl -sSL https://install.python-poetry.org/ | python3
 
 # copy project requirement files here to ensure they will be cached.
 WORKDIR $PYSETUP_PATH
@@ -33,7 +33,7 @@ COPY ./sveltewind-fastmongo-template/server/pyproject.toml ./
 COPY ./sveltewind-fastmongo-template/server/poetry.lock ./
 
 # install runtime deps - uses $POETRY_VIRTUALENVS_IN_PROJECT internally
-RUN poetry install
+RUN poetry install --
 
 ###############################################
 # Production Image
